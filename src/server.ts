@@ -2,16 +2,14 @@ import express from "express";
 import plansRouter from "./routes/plans.routes";
 import subscriptionRoutes from "./routes/subscription.routes";
 import cors from "cors"
-import dotenv from "dotenv"
 import orderRoutes from "./routes/order.routes";
 
 
 const app = express();
 
-// app.use(dotenv.config)
 app.use(express.json())
 app.use(cors({
-    origin: "*"
+    origin: process.env.CLIENT_URL || "http://localhost:3000",
 }))
 
 
