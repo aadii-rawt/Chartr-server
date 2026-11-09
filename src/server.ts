@@ -15,6 +15,10 @@ app.use(
   })
 );
 
+app.get("/health", (req, res) => {
+  res.status(200).json({ message: "Server is healthy" });
+})
+
 // PayU sends callback data as URL-encoded form data.
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
