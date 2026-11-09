@@ -1,25 +1,30 @@
-import express from "express";
-import plansRouter from "./routes/plans.routes";
-import subscriptionRoutes from "./routes/subscription.routes";
-import cors from "cors"
-import orderRoutes from "./routes/order.routes";
 
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+
+import payuRoutes from "./routes/payu.routes.js";
+
+dotenv.config();
 
 const app = express();
 
-app.use(express.json())
-app.use(cors({
-    origin: process.env.CLIENT_URL || "http://localhost:3000",
-}))
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL,
+  })
+);
 
+// PayU sends callback data as URL-encoded form data.
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
-app.get("/api/health", (req, res) => {
-    res.json({ msg: "server is running..." })
-})
+app.use("/api/payu", payuRoutes);
 
-app.use("/api/plan", plansRouter)
-app.use("/api/subscription", subscriptionRoutes)
-app.use("/api/order", orderRoutes)
+app.get("/", (req, res) => {
+  res.send("Chartr PayU Server Running");
+});
 
+const PORT = process.env.PORT || 4000;
 
 export default app
