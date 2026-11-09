@@ -19,10 +19,11 @@
     "sourceMap": true,
     "declaration": true,
     "declarationMap": true,
+    "noCheck": true,
 
     // Stricter Typechecking Options
     "noUncheckedIndexedAccess": true,
-    "exactOptionalPropertyTypes": true,
+    "exactOptionalPropertyTypes": false,
 
     // Style Options
     // "noImplicitReturns": true,

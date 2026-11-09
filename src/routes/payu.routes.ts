@@ -8,7 +8,7 @@ import {
   verifyResponseHash,
   signPayment,
   verifyPaymentSignature,
-} from "../utils/payu.js";
+} from "../utils/payu";
 
 const router = express.Router();
 
